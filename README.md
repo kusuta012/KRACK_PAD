@@ -27,12 +27,19 @@ Schematics
 ## bottom case
 
 
-<img width="998" height="686" alt="image" src="https://github.com/user-attachments/assets/af5c068f-e33a-4306-ba3d-cffca38f8c1a" />
+<img width="1026" height="669" alt="image" src="https://github.com/user-attachments/assets/09cea25c-95a2-4543-9b4a-a3e59ce29b1e" />
+
+<img width="1036" height="700" alt="image" src="https://github.com/user-attachments/assets/91450cd7-4aff-4be1-8411-f6d87a2c9b49" />
+
+
 
 ## top plate
 
 
-<img width="975" height="615" alt="image" src="https://github.com/user-attachments/assets/f767a622-5399-4b12-a228-818baa840c2a" />
+<img width="1148" height="660" alt="image" src="https://github.com/user-attachments/assets/5f82b032-041d-4d09-b368-ca85519f69a9" />
+
+
+
 
 ## BOM
 
