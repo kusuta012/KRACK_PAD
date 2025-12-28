@@ -42,3 +42,4 @@ Schematics
 - M3 × 16 mm screws × 4
 - M3 heat-set inserts × 4
 - 3D printed case × 1
+- Soldering Iron × 1
