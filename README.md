@@ -27,9 +27,11 @@ Schematics
 ## bottom case
 
 
-<img width="1026" height="669" alt="image" src="https://github.com/user-attachments/assets/09cea25c-95a2-4543-9b4a-a3e59ce29b1e" />
+<img width="1015" height="665" alt="image" src="https://github.com/user-attachments/assets/878e7ccc-2b9b-4cdd-a89e-5f4ed11424f1" />
 
-<img width="1036" height="700" alt="image" src="https://github.com/user-attachments/assets/91450cd7-4aff-4be1-8411-f6d87a2c9b49" />
+
+<img width="992" height="679" alt="image" src="https://github.com/user-attachments/assets/d6f9cd9e-6aaf-463f-bfc7-f59c6600e832" />
+
 
 
 
