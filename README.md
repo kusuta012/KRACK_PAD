@@ -40,6 +40,10 @@ Schematics
 
 <img width="1148" height="660" alt="image" src="https://github.com/user-attachments/assets/5f82b032-041d-4d09-b368-ca85519f69a9" />
 
+## all together 
+
+
+<img width="1220" height="759" alt="image" src="https://github.com/user-attachments/assets/d43ce731-694f-4277-b9e7-166baa038aae" />
 
 
 
