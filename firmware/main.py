@@ -34,8 +34,8 @@ class RainbowLED:
             self.last_update = now
 rainbow = RainbowLED(status_led)
 keyboard = KMKKeyboard()
-# SW1:GPIO0, SW2:GPIO1, SW3:GPIO2, SW4:GPIO3, SW5:GPIO26, SW6:GPIO27
-PINS = [board.D0, board.D1, board.D2, board.D3, board.D6, board.D7]
+# SW1:D6/TX, SW2:D7/RX, SW3: D8/SCK, SW4:D10/MOSI, SW5:ANALOG0, SW6:ANALOG1
+PINS = [board.TX, board.RX, board.SCK, board.MOSI, board.A0, board.A1]
 keyboard.matrix = KeysScanner(
     pins=PINS,
     value_when_pressed=False,
