@@ -4,6 +4,10 @@ A custom 6-key macropad , designed as part of Hack Club's Blueprint program.
 
 ## IMAGES
 
+Build 
+![IMG-20260128-WA0000](https://github.com/user-attachments/assets/dab74543-8bb7-493c-8822-f131634668b5)
+
+
 Schematics
 <img width="1042" height="723" alt="image" src="https://github.com/user-attachments/assets/baaeedb0-5f9f-4b32-a632-ff5189576fcd" />
 
