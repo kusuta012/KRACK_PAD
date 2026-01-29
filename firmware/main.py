@@ -4,23 +4,25 @@ import time
 from kmk.kmk_keyboard import KMKKeyboard
 from kmk.scanners.keypad import KeysScanner
 from kmk.keys import KC
-# 1. Wait a moment for the board to settle
-time.sleep(1)
-# 2. Setup NeoPixel - brightness can be 0.0 to 1.0
-status_led = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.03)  # Very dim
-# Rainbow color wheel function
+from kmk.modules.macros import Macros, Tap, Press, Release, Delay
+
+# 1. Initialize Keyboard and Macros
+keyboard = KMKKeyboard()
+macros = Macros()
+keyboard.modules.append(macros)
+
+# 2. Setup NeoPixel
+status_led = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.5)
+
 def wheel(pos):
-    # Input a value 0 to 255 to get a color value.
-    # The colours are a transition r - g - b - back to r.
-    if pos < 85:
-        return (pos * 3, 255 - pos * 3, 0)
+    if pos < 85: return (pos * 3, 255 - pos * 3, 0)
     elif pos < 170:
         pos -= 85
         return (255 - pos * 3, 0, pos * 3)
     else:
         pos -= 170
         return (0, pos * 3, 255 - pos * 3)
-# Rainbow animation in background
+
 class RainbowLED:
     def __init__(self, pixel):
         self.pixel = pixel
@@ -28,25 +30,58 @@ class RainbowLED:
         self.last_update = time.monotonic()
     def update(self):
         now = time.monotonic()
-        if now - self.last_update > 0.020:  # Update every 20ms
+        if now - self.last_update > 0.020:
             self.pixel.fill(wheel(self.pos))
             self.pos = (self.pos + 1) % 256
             self.last_update = now
+
 rainbow = RainbowLED(status_led)
-keyboard = KMKKeyboard()
-# SW1:D6/TX, SW2:D7/RX, SW3: D8/SCK, SW4:D10/MOSI, SW5:ANALOG0, SW6:ANALOG1
-PINS = [board.TX, board.RX, board.SCK, board.MOSI, board.A0, board.A1]
-keyboard.matrix = KeysScanner(
-    pins=PINS,
-    value_when_pressed=False,
+
+# --- MACRO DEFINITIONS ---
+
+# SW1: Win+R -> "code" -> Enter
+OPEN_VSCODE = KC.MACRO(
+    Press(KC.LWIN), Tap(KC.R), Release(KC.LWIN),
+    Delay(200),
+    "code",
+    Tap(KC.ENT)
 )
+
+# SW2: Show Desktop (Win + D)
+SHOW_DESKTOP = KC.LWIN(KC.D)
+
+# SW3: Task Manager (Ctrl + Shift + Esc)
+TASK_MANAGER = KC.LCTL(KC.LSFT(KC.ESC))
+
+# SW4: Lock PC (Win + L)
+LOCK_PC = KC.LWIN(KC.L)
+
+# SW5: Git Status
+GIT_STATUS = KC.MACRO("git status", Tap(KC.ENT))
+
+# SW6: Git Commit with cursor move
+GIT_COMMIT = KC.MACRO("git commit -m \"\"", Tap(KC.LEFT))
+
+# --- KEYBOARD SETUP ---
+
+PINS = [board.TX, board.RX, board.SCK, board.MOSI, board.A0, board.A1]
+keyboard.matrix = KeysScanner(pins=PINS, value_when_pressed=False)
+
 keyboard.keymap = [
-    [KC.A, KC.B, KC.C, KC.D, KC.E, KC.F]
+    [
+        OPEN_VSCODE,    # SW1
+        SHOW_DESKTOP,   # SW2
+        TASK_MANAGER,   # SW3
+        LOCK_PC,        # SW4
+        GIT_STATUS,     # SW5
+        GIT_COMMIT      # SW6
+    ]
 ]
-# Hook into KMK's main loop to update rainbow
+
 def before_matrix_scan_with_rainbow():
     rainbow.update()
+
 keyboard.before_matrix_scan = before_matrix_scan_with_rainbow
+
 if __name__ == '__main__':
     keyboard.go()
-
